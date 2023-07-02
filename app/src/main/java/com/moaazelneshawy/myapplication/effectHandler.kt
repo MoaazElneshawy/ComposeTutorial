@@ -1,10 +1,15 @@
 package com.moaazelneshawy.myapplication
 
 import android.util.Log
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import kotlinx.coroutines.delay
@@ -123,7 +128,58 @@ fun DisposableEffectExample() {
 
 /*
 *
-*
+* 5- SideEffect:
+* This is called every successful recomposition
 *
 * */
 
+@Composable
+fun SideEffectExample() {
+    SideEffect {
+        Log.e("SideEffectExample: ", "recomposed successfully")
+    }
+}
+
+/*
+* 6- ProduceState:
+* The usage of produceState that it returns a state changes over time, looks like flow
+* */
+@Composable
+fun ProduceStateExample(counter: Int): State<Int> {
+    return produceState(initialValue = 1, producer = {
+        while (value < counter) {
+            delay(1000L)
+            Log.e("ProduceStateExample: ", "$value")
+            value++
+        }
+    })
+}
+
+/*
+* 7- DerivedStateOf:
+* This state saves a cached value of it's scope.
+* Any thing calls this value will get the cached value and will not redo or invoke the scope again
+* but if there's any change inside the scope, they will be notified with the new value
+* */
+
+@Composable
+fun DerivedStateExample() {
+    var counter by remember {
+        mutableStateOf(0)
+    }
+
+//    val counterText = "Counter : $counter"
+    val counterText by derivedStateOf {
+        "Counter : $counter"
+    }
+    Column {
+
+        Button(onClick = { counter++ }) {
+            Text(text = counterText)
+        }
+        Spacer(modifier = Modifier.height(10.dp))
+        Button(onClick = { counter++ }) {
+            Text(text = "BTN 2 $counterText")
+        }
+    }
+}
