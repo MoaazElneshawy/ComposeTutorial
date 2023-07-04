@@ -2,11 +2,17 @@ package com.moaazelneshawy.myapplication
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.*
+import androidx.compose.material.BadgedBox
+import androidx.compose.material.BottomNavigation
+import androidx.compose.material.BottomNavigationItem
+import androidx.compose.material.Icon
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Notifications
@@ -56,14 +62,15 @@ fun BottomNavBarExample() {
                 navController = navHostController,
                 onItemClicked = { navHostController.navigate(it.route) }
             )
+        },
+        content = {
+            NavigationScreens(it, navController = navHostController)
         }
-    ) {
-        NavigationScreens(navController = navHostController)
-    }
+    )
 }
 
 @Composable
-fun NavigationScreens(navController: NavHostController) {
+fun NavigationScreens(paddingValues: PaddingValues, navController: NavHostController) {
     NavHost(navController = navController, startDestination = HOME) {
         composable(HOME) {
             Box(

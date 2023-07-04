@@ -1,4 +1,3 @@
-/*
 package com.moaazelneshawy.myapplication
 
 import androidx.compose.foundation.layout.*
@@ -21,39 +20,33 @@ import androidx.navigation.NavController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 
-*/
 /*
 *
 * 1- in build.gradle
 *  add implementation "androidx.navigation:navigation-compose:2.4.0-alpha04"
 *
 * 2- The navController access routes as String
-* *//*
-
+* */
 
 sealed class Screens(val route: String) {
 
     object RegistrationScreen : Screens("regi_screen")
     object WelcomeScreen : Screens("welcome_screen")
 
-    */
-/*
+    /*
     * This function make it easier to append args to route
-    * *//*
-
+    * */
 
     fun withArgs(vararg ages: String?): String {
         return buildString {
             append(route)
-            */
-/*
+            /*
             * using slash "/arg" make it required and application may crash if there's default value
             * if we make it "?arg=arg" this means it's an optional
-            * *//*
-
+            * */
             ages.forEach {
                 if (it.isNullOrEmpty().not())
                     append("/$it")
@@ -64,11 +57,9 @@ sealed class Screens(val route: String) {
 
 }
 
-*/
 /*
 * 3- define the Navigation
-* *//*
-
+* */
 
 const val NAME = "name"
 const val AGE = "age"
@@ -81,26 +72,20 @@ fun NavigationExample() {
         navController = navController,
         startDestination = Screens.RegistrationScreen.route,
         builder = {
-            */
-/*
+            /*
             * 4- here you define the nav graph screens using composable(route){ what it's represent}
-            * *//*
-
+            * */
 
             composable(route = Screens.RegistrationScreen.route) {
                 RegistrationScreen(navController = navController)
             }
-            */
-/*
+            /*
             * ORDER IS A MUST
-            * *//*
-
+            * */
             composable(route = Screens.WelcomeScreen.route + "/{$NAME}?$AGE=$AGE/{$EMAIL}",
-                */
-/*
+                /*
                  * here we define the arguments
-                 * *//*
-
+                 * */
                 arguments = listOf(
                     navArgument(NAME) {
                         nullable = false
@@ -226,4 +211,4 @@ fun RegistrationScreen(navController: NavController) {
 @Composable
 fun WelcomeScreen(name: String?, email: String?, age: String?) {
     Text(text = "Hello $name , $age , $email")
-}*/
+}
