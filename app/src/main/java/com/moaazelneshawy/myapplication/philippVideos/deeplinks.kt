@@ -1,4 +1,4 @@
-package com.moaazelneshawy.myapplication
+package com.moaazelneshawy.myapplication.philippVideos
 
 import android.content.Intent
 import android.util.Log

@@ -1,4 +1,4 @@
-package com.moaazelneshawy.myapplication
+package com.moaazelneshawy.myapplication.philippVideos
 
 import android.graphics.Color
 import android.view.Gravity

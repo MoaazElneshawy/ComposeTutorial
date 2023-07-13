@@ -1,4 +1,4 @@
-package com.moaazelneshawy.myapplication
+package com.moaazelneshawy.myapplication.philippVideos
 
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.spring

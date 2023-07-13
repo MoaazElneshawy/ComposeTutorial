@@ -1,4 +1,4 @@
-package com.moaazelneshawy.myapplication
+package com.moaazelneshawy.myapplication.philippVideos
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
